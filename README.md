@@ -18,7 +18,11 @@ The dataset will consist of a mix of synthetic and real screenshots labeled via 
 Technically, if we are creating synthetic screenshots (modified) the LabelMe labels from the originals should be reusable on the copies, hugely improving the 
 labeling effort.
 
+After detection, the program will use existing [Trading APIs](https://tarkov-market.com/dev/api) to check item prices of player's loot.
+
 As a POC, the model will be detecting medical equipmnet. After detection, an easy to use tool will be created to better present the data to the end-user.
+The presentation tool will have a set of filter and ways to display prices, like Gradient from Red to Purple (Red > Yellow > Green > Blue > Purple) showing how valuable the item is
+or simply display the prices of given items after hovering over the item using mouse.
 
 All of the training will be performed on my laptop with RTX 4060 - hopefully it will survive it. :)
 
