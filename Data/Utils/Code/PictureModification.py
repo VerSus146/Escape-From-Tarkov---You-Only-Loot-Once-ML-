@@ -2,8 +2,11 @@
 This utility program modifies the background of images based on provided mask. It creates a random RGB image matching
 the size of original images and creates a random solid color image. The program accepts params:
 --image : original image to be modified. Absolute Path (Default - All images in ToModify folder)
---mask : mask to be applied to the image. Absolute Path (Default - Matching all images names from ToModify folder in Masks folder)
+--mask : mask to be applied to the image. Absolute Path (Default - All masks in Masks folder)
 --samples : number of modified images to be created (Default 10)
+
+From IDE: Simply run the script - all pictures in "ToModify" folder that have a mask in "Mask" folder will
+automatically generate new images
 """
 import os
 import random
@@ -34,7 +37,6 @@ def modify_image(image_path, mask_path, sample):
 	image = Image.composite(solid_color, image_to_edit, mask)
 
 	image.save(f"{prepared_images_path}\\mod{sample}_{PurePath(image_path).name}")
-
 
 
 # Parse arguments from CMD Line
@@ -75,9 +77,8 @@ if image_to_modify is not None:
 	for sample in range(samples):
 		modify_image(image_to_modify, mask_to_apply, sample)
 
-	# Move the image and mask after modifying
+	# Move the image after modifying
 	os.rename(image_to_modify, f"{prepared_images_path}\\{PurePath(image_to_modify).name}")
-	os.rename(mask_to_apply, f"{prepared_images_path}\\Masks\\{PurePath(mask_to_apply).name}")
 
 if image_to_modify is None:
 	allowed_ext = [".png", ".jpg"]
@@ -94,6 +95,5 @@ if image_to_modify is None:
 			else:
 				print(f"Couldn't find mask for {image}.")
 
-		# Move the image and mask after modifying
+		# Move the image after modifying
 		os.rename(f"{to_modify_images_path}\\{image}", f"{prepared_images_path}\\{image}")
-		os.rename(f"{masks_path}\\{image}", f"{prepared_images_path}\\Masks\\{image}")
