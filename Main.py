@@ -1,10 +1,20 @@
-import torch
-from ultralytics import YOLO
+from Code.training import Train
+from Code.argparser import Parser
 
 if __name__ == '__main__':
-	# Load a model
-	model = YOLO('yolov8n.pt') # load a pretrained model (recommended for training)
 
-	results = model.train(data="Data/Dataset/data.yaml", epochs=100, imgsz=640, device="cuda", workers=4)
+	Parser = Parser()
 
-	model.save("EFT-YOLO-V1.pt")
+	mode = Parser.Parse_arguments()
+
+	if "training" in mode["mode"]:
+		print("Training Mode")
+
+		if mode["dataset"] is None:
+			Train = Train(model_name=mode["name"])
+		else:
+			Train = Train(model_name=mode["name"], dataset=mode["dataset"])
+			Train.train()
+
+	if "detection" in mode["mode"]:
+		print("Detection Mode")
