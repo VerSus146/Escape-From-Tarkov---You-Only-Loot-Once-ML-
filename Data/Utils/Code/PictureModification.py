@@ -17,7 +17,7 @@ from PIL import Image
 
 arguments = sys.argv
 
-prepared_images_path = os.path.abspath(os.curdir) + "\\Data\\Images"
+prepared_images_path = os.path.abspath(os.curdir) + "\\Data\\Utils\\Annotation\\ToAnnotate\\Images"
 to_modify_images_path = os.path.abspath(os.curdir) + "\\Data\\Utils\\ToModify"
 masks_path = os.path.abspath(os.curdir) + "\\Data\\Utils\\ToModify\\Masks"
 
@@ -89,6 +89,7 @@ if image_to_modify is None:
 		# Check if the file is an image
 		if os.path.splitext(image)[1].lower() not in allowed_ext:
 			continue
+
 		for sample in range(samples):
 			if image in os.listdir(masks_path):
 				modify_image(to_modify_images_path + f"\\{image}", masks_path + f"\\{image}", sample)

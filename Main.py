@@ -1,5 +1,6 @@
 from Code.training import Train
 from Code.argparser import Parser
+from Code.Detection.detection import Detection
 
 if __name__ == '__main__':
 
@@ -18,3 +19,4 @@ if __name__ == '__main__':
 
 	if "detection" in mode["mode"]:
 		print("Detection Mode")
+		Detection = Detection(2137, "EFTYOLO.pt")

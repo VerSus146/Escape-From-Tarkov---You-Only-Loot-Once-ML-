@@ -22,7 +22,7 @@ class Parser:
 
 		if args.model_name is None:
 			print("Using default name: EFT-YOLO")
-			args.model_name = "EFT-YOLO.pt"
+			args.model_name = "EFTYOLO.pt"
 
 		if os.path.isfile(Path(args.dataset)):
 			return {"mode": "training", "dataset": args.dataset, "name": args.model_name}
